@@ -1,0 +1,154 @@
+/* xinyu_word 识字页面样式（对应 apps/index.html）
+ * 尺寸统一用 vh/vw，横屏自动铺满，换电视分辨率不用改
+ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* background: #fdf6e3; */
+    color: #3a3226;
+    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* 第一层 = 半透明遮罩，叠在第二层图片上 → 相当于给背景图降透明度。
+       注意：不要直接给 #app 加 opacity，那会把里面的文字一起变淡。
+       rgba 最后一位是「遮罩浓度」：0.75 表示图片只露 25%，调小=图更清楚 */
+    background-image:
+        linear-gradient(rgba(253, 246, 227, 0.75), rgba(253, 246, 227, 0.75)),
+        url("../imgs/2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 最上面一列菜单：字库 / 模式 / 图形（竖排） */
+#menubar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2vh 3vw 0;
+}
+.menu-item {
+    font: inherit;
+    font-size: 2.4vh;
+    color: #2f6f4f;
+    background: rgba(47, 111, 79, 0.08);
+    border: 0.2vh solid transparent;
+    border-radius: 999px;
+    padding: 0.6vh 1.6vw;
+    margin: 0 0 1vh 0;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.menu-item:focus { outline: none; }
+/* 遥控器选中的那一项 */
+.menu-item.focused {
+    background: #2f6f4f;
+    color: #ffffff;
+}
+
+/* 顶栏：进度 */
+#topbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 1.5vh 3vw;
+    font-size: 3vh;
+    color: #8a7b63;
+}
+#progress { font-variant-numeric: tabular-nums; }
+
+/* 中间大字区：图形 + 汉字 + 拼音 */
+#stage {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#tip {
+    font-size: 12vh;
+    line-height: 1.2;
+    margin-bottom: 2.5vh;
+}
+#word {
+    font-size: 27vh;
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+#pinyin {
+    margin-top: 2.5vh;
+    font-size: 5vh;
+    letter-spacing: 0.35em;
+    color: #b08d57;
+}
+
+/* 底栏：操作提示 + 字库来源 */
+#bottombar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5vh 3vw;
+    font-size: 1.5vh;
+    color: #a89a80;
+}
+
+/* 加载 / 错误提示（盖在最上层） */
+#loading {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh;
+    text-align: center;
+    font-size: 5vh;
+    color: #8a7b63;
+    background: #fdf6e3;
+}
+
+#bg-img {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #fdf6e3;
+    z-index: -2;
+    opacity: 1;
+    text-align: center;
+    padding-top: 8vh;
+}
+img {
+    /* width: 100%; */
+    height: 45vh;
+    object-fit: cover;
+}
+
+#title {
+    position: absolute;
+    top: 2vh; left: 0; right: 0;
+    padding: 1.5vh 3vw;
+    font-size: 4vh;
+    width: 100%;
+    text-align: center;
+    /* 只做展示：否则这条整宽横幅会盖住左上角第一个菜单按钮（字库），
+       导致它能看见却点不动 */
+    pointer-events: none;
+    /* color: #8a7b63;
+    background: #fdf6e3; */
+}
