@@ -34,9 +34,9 @@
 
     /* ========== 改这里：远端字库地址，**按顺序**试，第一个成功的就用 ========== */
     var REMOTE_URLS = [
-        "https://decadeguo.github.io/out_link/words_origin.js",                // GitHub Pages
-        "https://cdn.jsdelivr.net/gh/decadeGuo/out_link@main/words_origin.js", // jsDelivr（分支引用有缓存，更新会延迟）
-        "http://tlcdoebqd.hn-bkt.clouddn.com/words/words_origin.js"            // 七牛
+        "https://decadeguo.github.io/out_link/js/words_origin.js",                // GitHub Pages
+        "https://cdn.jsdelivr.net/gh/decadeGuo/out_link@main/js/words_origin.js", // jsDelivr（分支引用有缓存，更新会延迟）
+        "http://tlcdoebqd.hn-bkt.clouddn.com/words/js/words_origin.js"            // 七牛
     ];
     /* ========================================================================== */
 
