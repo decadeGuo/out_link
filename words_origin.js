@@ -3,8 +3,11 @@ window.WORDS_VERSION = "2026-09-14";
 window.WORING = '版本所有@芯宇识字';
 // 幼儿园学的字
 window.words_youeryuan = [
+    { "word": "郭", "pinyin": "guo", "tip": "👶" },
     { "word": "儿", "pinyin": "er", "tip": "👶" },
+    { "word": "芯", "pinyin": "xin", "tip": "👶" },
     { "word": "爸", "pinyin": "ba", "tip": "👨" },
+    { "word": "雨", "pinyin": "yu", "tip": "🌧" },
     { "word": "人", "pinyin": "ren", "tip": "🧑" },
     { "word": "口", "pinyin": "kou", "tip": "👄" },
     { "word": "妈", "pinyin": "ma", "tip": "👩" },
