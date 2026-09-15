@@ -95,7 +95,7 @@ html, body {
     margin-top: 2.5vh;
     font-size: 5vh;
     letter-spacing: 0.35em;
-    color: #b08d57;
+    /* color: #b08d57; */
 }
 
 /* 底栏：操作提示 + 字库来源 */
@@ -105,7 +105,7 @@ html, body {
     justify-content: space-between;
     padding: 2.5vh 3vw;
     font-size: 1.5vh;
-    color: #a89a80;
+    /* color: #a89a80; */
 }
 
 /* 加载 / 错误提示（盖在最上层） */
