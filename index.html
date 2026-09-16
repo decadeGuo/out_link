@@ -9,7 +9,9 @@
 <div id="app"></div>
 
 <!-- 入口只需要这一个文件：页面结构 / 逻辑 / 样式 / 字库
-     全部在 loader.js 的清单里动态加载，远端优先，本地兜底 -->
-<script src="https://decadeguo.github.io/out_link/js/loader.js"></script>
+     全部在 loader.js 的清单里动态加载，同源优先（见 js/loader.js 的 remoteBases）。
+     loader.js 是唯一必须跟本文件放在一起的文件，别再给它加脚本兜底：
+     它要是没加载上，能兜底的那段代码自己也没跑起来。 -->
+<script src="./js/loader.js"></script>
 </body>
 </html>

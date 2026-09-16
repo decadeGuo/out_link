@@ -1,11 +1,12 @@
 /**
  * xinyu_word 字库加载器
  * ---------------------------------------------------------------------------
- * 只从远端拉字库，页面里不再带内置字库那份副本。
- * 故意不做 localStorage 缓存：远端改了字库就直接生效，
+ * 只从线上拉字库，页面里不再带内置字库那份副本。
+ * 故意不做 localStorage 缓存：改了字库就直接生效，
  * 不会出现「远端已更新、电视上还是旧字库」这种查不出来的怪现象。
  *
- *   REMOTE_URLS 里的远端字库 —— **按顺序**试，第一个能拿到数据的就用
+ *   REMOTE_URLS 里的字库 —— **按顺序**试，第一个能拿到数据的就用
+ *   第一项是 "./js/words_origin.js"（同源优先），后面才是各镜像站
  *
  * 失败 ≠ 放弃。一个字都没拉到时 ready 会 reject：
  *   1. 调用方（after.js）必须把失败原因显示到页面上，不许吞掉
@@ -33,11 +34,13 @@
 (function (global) {
     "use strict";
 
-    /* ========== 改这里：远端字库地址，**按顺序**试，第一个成功的就用 ========== */
+    /* ========== 改这里：字库地址，**按顺序**试，第一个成功的就用 ========== */
+    // 注意：这份字库地址是**独立的一列**，不跟 loader.js 的 remoteBases 走，两处都要改。
     var REMOTE_URLS = [
+        "./js/words_origin.js",                                                   // 同源（和 index.html 一个站）
         "https://decadeguo.github.io/out_link/js/words_origin.js",                // GitHub Pages
         "https://cdn.jsdelivr.net/gh/decadeGuo/out_link@main/js/words_origin.js", // jsDelivr（分支引用有缓存，更新会延迟）
-        "http://tlcdoebqd.hn-bkt.clouddn.com/words/js/words_origin.js"            // 七牛
+        "http://tlcdoebqd.hn-bkt.clouddn.com/words/js/words_origin.js"            // 七牛（http，页面是 https 时会被浏览器拦掉）
     ];
     /* ========================================================================== */
 
