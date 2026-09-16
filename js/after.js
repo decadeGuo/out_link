@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    // 字库列表：key 对应 words.js 里 window.words_xxx
+    // 字库列表：key 对应远端字库里的 window.words_xxx
     var BOOKS = [
         { key: "youeryuan", name: "幼儿园学的字" },
         { key: "common",    name: "常见字" }
@@ -212,12 +212,8 @@
     });
 
     /* ---------------- 启动 ---------------- */
-    function sourceName(s) {
-        return { remote: "远端", local: "内置" }[s] || s;
-    }
-
-    // 远端失败的原因必须显示出来。不然只看到「内置」两个字，
-    // 会以为程序放着远端不用，其实只是远端那次没拉上
+    // 远端失败的原因必须显示出来。不然只看到「0 / 0」和一行版本号，
+    // 会以为程序坏了，其实只是远端那次没拉上
     function shortReason(msg) {
         if (!msg) return "未知原因";
         if (msg.indexOf("超时") >= 0) return "连接超时";
@@ -226,11 +222,12 @@
         return String(msg).slice(0, 12);
     }
 
+    // 字库只有远端一个来源，不再区分「远端 / 内置」
     function statusText(snap) {
         if (!snap.errors || !snap.errors.length) {
-            return sourceName(snap.source) + " · " + snap.version;
+            return "字库 " + snap.version;
         }
-        return sourceName(snap.source) + " · " + snap.version +
+        return "字库 " + snap.version +
                "（远端" + shortReason(snap.errors[0]) + "，后台重试中）";
     }
 
@@ -250,23 +247,48 @@
     document.body.setAttribute("tabindex", "-1");
     document.body.focus();
 
-    // 后台重试成功后热更新：不用重启应用就能看到新字库
-    XinyuWords.onUpdate = function (snap) {
-        applySnapshot(snap, true);
-    };
+    // 恢复上次的设置（延迟到真拿到字库、要渲染之前再做）
+    var prefDone = false;
+    function restorePref() {
+        if (prefDone) return;
+        prefDone = true;
 
-    XinyuWords.ready.then(function (snap) {
-        // 恢复上次的设置
         var pref = loadPref();
         if (typeof pref.book === "number" && pref.book >= 0 && pref.book < BOOKS.length) {
             state.book = pref.book;
         }
         if (typeof pref.random === "boolean") state.random = pref.random;
         if (typeof pref.showTip === "boolean") state.showTip = pref.showTip;
+    }
 
+    // 后台重试成功后热更新：不用重启应用就能看到新字库。
+    // 首屏就失败的话，这里是第一次真正拿到字库，设置和失败提示都要一起补上
+    XinyuWords.onUpdate = function (snap) {
+        restorePref();
+        elLoading.style.display = "none";
+        applySnapshot(snap, true);
+    };
+
+    XinyuWords.ready.then(function (snap) {
+        restorePref();
         elLoading.style.display = "none";
         applySnapshot(snap, false);
     }).catch(function (err) {
-        elLoading.textContent = "字库加载失败：" + (err && err.message ? err.message : err);
+        // 远端一个字都没拉到：把原因摆出来，别只留一句「加载失败」。
+        // 主线用大字给结论，原始地址链放小字；一条三百多字的 error
+        // 直接用 #loading 的 5vh 字排下去会撑出屏幕，什么都看不见。
+        // 后台还在按 2s/5s/15s 重试，拉到了会走上面的 onUpdate 自动补齐
+        var detail = err && err.message ? err.message : String(err);
+        elLoading.innerHTML =
+            '<div style="max-width:100%">' +
+                '<div>字库加载失败：' + esc(shortReason(detail)) + '（后台仍在重试）</div>' +
+                '<div style="font-size:1.6vh;line-height:1.7;margin-top:3vh;' +
+                     'color:#b3a68f;word-break:break-all;">' + esc(detail) + '</div>' +
+            '</div>';
     });
+
+    // 拼 HTML 前转一下义：失败原因里是原始 URL，别让它当成标签解析
+    function esc(s) {
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
 })();
