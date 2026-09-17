@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择入口</title>
+    <style> 
+        body{
+            background-color: #bde897;
+        }
+        #title {
+            text-align: center;
+            font-size: 30px;
+            margin: 20px;
+        }
+        .btn{
+            width: 300px;
+            height: 100px;
+            background-color: #e897b1;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        .btn:hover{
+            background-color: #e89797;
+        }
+        #zdy{
+            width: 300px;
+            height: 100px;
+            margin: 20px auto;
+            background-color: aliceblue;
+            text-align: center;
+            border-radius: 20px;
+        }
+        #input{
+            width: 90%;
+            height: 30px;
+            font-size: 20px;
+            margin: 10px auto;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+        #zdy-go{
+            width: 100px;
+            height: 30px;
+            background-color: #e897b1;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #zdy-go:hover{
+            background-color: #e89797;
+        }
+    </style>
+</head>
+<body>
+    <div id="title">入口选择</div>
+    <div id="5G" class="btn">5g源</div>
+    <div id="github" class="btn">Github</div>
+    <div id="zdy">
+        <input type="text" id="input" placeholder="请输入自定义源(https://)">
+        <div id="zdy-go">跳转</div>
+    </div>
+
+    <script>
+        document.getElementById('5G').onclick = function(){
+            window.location.href = 'https://file.5gzhike.com/al_yw_test/excel/2024/9/10/index.html';
+        }
+        document.getElementById('github').onclick = function(){
+            window.location.href = 'https://decadeguo.github.io/out_link/index.html';
+        }
+        document.getElementById('zdy-go').onclick = function(){
+            let url = document.getElementById('input').value;
+            if(url){
+                window.location.href = url;
+            }
+        }
+    </script>
+    </script>
+</body>
+</html>
