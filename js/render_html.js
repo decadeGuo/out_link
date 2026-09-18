@@ -1,10 +1,10 @@
 let app = document.getElementById('app');
 app.innerHTML = `<div id="bg-img"></div>
     <div id="title">
-        <span style="color: green;"><b>欢迎来到芯宇识字</b></span>
         <div id="topbar">
-        <span id="progress">0 / 0</span>
-    </div>
+            <span id="logo">芯宇识字</span>
+            <span id="progress">0 / 0</span>
+        </div>
 
     </div>
     <div id="menubar">

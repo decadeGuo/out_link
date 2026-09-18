@@ -60,16 +60,32 @@ html, body {
     color: #ffffff;
 }
 
-/* 顶栏：进度 */
+/* 顶栏：标题居中，进度单独贴右 */
 #topbar {
+    position: relative;      /* 给 #progress 当定位参考 */
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center; /* 标题水平居中 */
     padding: 1.5vh 3vw;
+}
+/* 顶部标题 */
+#logo {
+    font-size: 4vh;
+    font-weight: 700;
+    color: #2f6f4f;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+}
+/* 进度：绝对定位贴右，不参与居中计算，标题才在正中间 */
+#progress {
+    position: absolute;
+    right: 3vw;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 3vh;
     color: #8a7b63;
+    font-variant-numeric: tabular-nums;
 }
-#progress { font-variant-numeric: tabular-nums; }
 
 /* 中间大字区：图形 + 汉字 + 拼音 */
 #stage {
@@ -79,6 +95,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: -100px;
 }
 #tip {
     font-size: 12vh;
@@ -142,13 +159,45 @@ img {
 #title {
     position: absolute;
     top: 2vh; left: 0; right: 0;
-    padding: 1.5vh 3vw;
-    font-size: 4vh;
     width: 100%;
-    text-align: center;
     /* 只做展示：否则这条整宽横幅会盖住左上角第一个菜单按钮（字库），
        导致它能看见却点不动 */
     pointer-events: none;
-    /* color: #8a7b63;
-    background: #fdf6e3; */
+    /* background: rgba(253, 246, 227, 0.6); */
+}
+
+/* ==========================================================================
+   窄屏 / 竖屏适配（手机）
+   --------------------------------------------------------------------------
+   宽屏（电视横屏）下标题是「绝对定位 + 居中」，左右两侧的空间留给竖排菜单和进度。
+   但整套尺寸都用 vh，竖屏手机的 vh 相对宽度太大：标题被撑宽，居中后就会压到
+   左侧菜单上（实测 390×844 压住 89px、414×896 压住 96px）。
+
+   触发条件（两个满足其一）：
+     max-aspect-ratio: 3/4  高宽比 > 1.33 的竖屏 —— 这才是真正的判据。
+                            推导下来「重不重叠」只取决于 宽/高 比不比的过 0.7，
+                            跟屏幕绝对宽度无关，所以用宽高比而不是像素断点。
+     max-width: 900px       兜底，窄窗口也算（比如手机横屏、小窗调试）
+
+   处理：标题脱离绝对定位、回到正常流，自己占一行排在菜单上方，
+   于是变成「标题 → 菜单 → 大字 → 底栏」纵向依次排列，结构上就不可能重叠。
+   ========================================================================== */
+@media (max-aspect-ratio: 3/4), (max-width: 900px) {
+    #title {
+        position: static;
+    }
+    #topbar {
+        padding: 2vh 4vw 0;
+    }
+    #menubar {
+        padding: 1vh 4vw 0;
+    }
+    /* 底栏三块加起来 367px，窄屏可用宽度只有 366px —— 差 1px 塞不下，
+       结果是「换字提示」被折成两行、和版权挤在一起。
+       改成纵向堆叠，每块独占一行，不再互相挤。 */
+    #bottombar {
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.6;
+    }
 }
