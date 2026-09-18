@@ -96,6 +96,7 @@ html, body {
     align-items: center;
     justify-content: center;
     margin-top: -100px;
+    pointer-events:none;
 }
 #tip {
     font-size: 12vh;
