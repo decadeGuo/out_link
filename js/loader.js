@@ -55,7 +55,7 @@
             "https://cdn.jsdelivr.net/gh/decadeGuo/out_link@main/"
         ],
         // 单个资源超时（毫秒）
-        timeout: 4000,
+        timeout: 10000,
         // 样式表
         css: ["css/index.css"],
         // 脚本，**按顺序执行**，有依赖关系不要调换：
@@ -82,7 +82,8 @@
 
     // 绕开 HTTP 缓存（远端服务器没有 Cache-Control / ETag）
     function bust(url) {
-        return url + (url.indexOf("?") < 0 ? "?" : "&") + "_t=" + Date.now();
+        // return url + (url.indexOf("?") < 0 ? "?" : "&") + "_t=" + Date.now();
+        return url + (url.indexOf("?") < 0 ? "?" : "&") + "_t=20260920";
     }
 
     // 加载一个远端资源，超时也算失败：远端卡住时不能让页面白屏干等。
