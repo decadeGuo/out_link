@@ -201,4 +201,7 @@ img {
         align-items: flex-start;
         line-height: 1.6;
     }
+    #word{
+        font-size: 13vh;
+    }
 }

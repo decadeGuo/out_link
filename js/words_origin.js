@@ -1,9 +1,11 @@
 // 字库版本号：字库有改动就改一下，方便确认电视端用的是哪一版
-window.WORDS_VERSION = "2026-09-14";
+window.WORDS_VERSION = "2026-09-20";
 window.WORING = '版本所有@芯宇识字';
 // 幼儿园学的字
 window.words_youeryuan = [
-    { "word": "郭", "pinyin": "guo", "tip": "👶" },
+    { "word": "长颈鹿", "pinyin": "giraffe", "tip": "🦒" },
+    { "word": "斑马", "pinyin": "zerbera", "tip": "🦓" },
+    { "word": "郭", "pinyin": "guo", "tip": "郭" },
     { "word": "儿", "pinyin": "er", "tip": "👶" },
     { "word": "芯", "pinyin": "xin", "tip": "👶" },
     { "word": "爸", "pinyin": "ba", "tip": "👨" },
@@ -53,6 +55,7 @@ window.words_youeryuan_common = [
     { "word": "长", "pinyin": "chang", "tip": "📏" },
     { "word": "好", "pinyin": "hao", "tip": "👍" },
     // 人 / 身体
+    { "word": "舌", "pinyin": "she", "tip": "😛" },
     { "word": "人", "pinyin": "ren", "tip": "🧑" },
     { "word": "口", "pinyin": "kou", "tip": "👄" },
     { "word": "手", "pinyin": "shou", "tip": "✋" },
