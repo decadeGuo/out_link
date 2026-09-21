@@ -10,7 +10,7 @@ html, body {
     overflow: hidden;
     /* background: #fdf6e3; */
     color: #3a3226;
-    font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+    font-family: "楷体","Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
     -webkit-user-select: none;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
