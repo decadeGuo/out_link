@@ -2,7 +2,26 @@
 window.WORDS_VERSION = "2026-09-20";
 window.WORING = '版本所有@芯宇识字';
 // 幼儿园学的字
+// 天、门、方、头、北、雨、石、禾、牙、耳、毛、公、干、红、田、奶、包、电
 window.words_youeryuan = [
+    { "word": "天", "pinyin": "tian", "tip": "天" },
+    { "word": "门", "pinyin": "men", "tip": "门" },
+    { "word": "方", "pinyin": "fangang", "tip": "方" },
+    { "word": "头", "pinyin": "tou", "tip": "头" },
+    { "word": "北", "pinyin": "beijing", "tip": "北" },
+    { "word": "雨", "pinyin": "yu", "tip": "🌧" },
+    { "word": "石", "pinyin": "shi", "tip": "石" },
+    { "word": "禾", "pinyin": "he", "tip": "禾" },
+    { "word": "牙", "pinyin": "yin", "tip": "牙" },
+    { "word": "耳", "pinyin": "er", "tip": "耳" },
+    { "word": "毛", "pinyin": "mao", "tip": "毛" },
+    { "word": "公", "pinyin": "gong", "tip": "公" },
+    { "word": "干", "pinyin": "kan", "tip": "干" },
+    { "word": "红", "pinyin": "hong", "tip": "红" },
+    { "word": "田", "pinyin": "tian", "tip": "田" },
+    { "word": "奶", "pinyin": "na", "tip": "奶" },
+    { "word": "包", "pinyin": "bao", "tip": "包" },
+    { "word": "电", "pinyin": "dian", "tip": "电" },
     { "word": "长颈鹿", "pinyin": "giraffe", "tip": "🦒" },
     { "word": "斑马", "pinyin": "zerbera", "tip": "🦓" },
     { "word": "郭", "pinyin": "guo", "tip": "郭" },
