@@ -1,14 +1,21 @@
 // 字库版本号：字库有改动就改一下，方便确认电视端用的是哪一版
-window.WORDS_VERSION = "2026-09-20";
+window.WORDS_VERSION = "2026-10-19";
 window.WORING = '版本所有@芯宇识字';
 // 幼儿园学的字
 // 天、门、方、头、北、雨、石、禾、牙、耳、毛、公、干、红、田、奶、包、电
 window.words_youeryuan = [
+    { "word": "万", "pinyin": "wan", "tip": "🔢" },
+    { "word": "马", "pinyin": "ma", "tip": "🐴" },
+    { "word": "丁", "pinyin": "ding", "tip": "📌" },
+    { "word": "元", "pinyin": "yuan", "tip": "🪙" },
+    { "word": "乡", "pinyin": "xiang", "tip": "🏞️" },
+    { "word": "你", "pinyin": "ni", "tip": "🙋" },
+    { "word": "文", "pinyin": "wen", "tip": "📝" },
     { "word": "天", "pinyin": "tian", "tip": "🌤️" },
     { "word": "门", "pinyin": "men", "tip": "🚪" },
-    { "word": "方", "pinyin": "fangang", "tip": "⬜" },
+    { "word": "方", "pinyin": "fang", "tip": "⬜" },
     { "word": "头", "pinyin": "tou", "tip": "🧠" },
-    { "word": "北", "pinyin": "beijing", "tip": "🧭" },
+    { "word": "北", "pinyin": "bei", "tip": "🧭" },
     { "word": "雨", "pinyin": "yu", "tip": "🌧️" },
     { "word": "石", "pinyin": "shi", "tip": "🪨" },
     { "word": "禾", "pinyin": "he", "tip": "🌱" },
